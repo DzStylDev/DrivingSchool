@@ -3,7 +3,7 @@
 
 Pour démarre le serveur
 
-Il faut taper cette commande `source bin/activate` pour definir l'environnement.
+Il faut taper cette commande `source bin/activate` pour activer l'environnement.
 
 ensuite taper cette commande: `python manage.py runserver`
 
