@@ -1,0 +1,32 @@
+{%  extends 'base.html' %}
+
+{% block titre %}
+    <h2>Liste des éléves de l'auto-ecole<h2>
+{% endblock titre %}
+{% block content %}
+    
+    <table class="table table-borderless">
+        <thead class="border-bottom font-weight-bold">
+            <tr>
+                <td>ID</td>
+                <td>Username</td>
+                <td>Editer</td>
+                <td>Supprimer</td>
+                <td>Fiche</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for eleves in eleves_list %}
+            <tr>
+                <td>{{ eleves.id }}</td>
+                <td>{{eleves.username}}</td>
+                <td><a href="{% url 'modify_student' eleves.id %}" class="btn text-secondary px-0"><i class="far fa-edit fa-lg"></i></a></td>
+                <td><a href="{% url 'delete_student' eleves.id %}" class="btn"><i class="far fa-trash-alt fa-lg text-danger float-right"></i></a></td>
+                <td><a href="{% url 'fiche_student' eleves.id %}" class="btn"><i class="far fa-file-alt fa-lg fa-solid text-success float-right"></i></a></td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock content %}

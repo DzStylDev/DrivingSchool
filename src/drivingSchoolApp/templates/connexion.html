@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titre %}
+    <h1>Rentre dans l'auto-école<h1>
+{% endblock titre %}
+
+{% for message in messages %}
+<strong>{{ message }}</strong>
+{% endfor %}
+
+{% block content %}
+    <form action="" method="post" autocomplete="off">
+        {% csrf_token %}
+
+        
+        <label for='username'>Nom d'utilisateur</label>
+        <input type="text" name="username">
+
+        <label for='password'>Mot de passe</label>
+        <input type="password" name="password">
+
+        <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Entrer dans l'auto-école</button>
+    </form>
+{% endblock content %}

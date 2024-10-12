@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{%  load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+{% block titre %}
+    <h1>Bienvenu sur l'auto-école</h1>
+{% endblock titre %}
+
+
+{% block content %} 
+{% if request.user.is_authenticated %}
+        <h2>Tu est connecté {{ request.user.username  }} en tant 
+            {% if currentRole == "1" %}
+                Eleve
+            {% elif currentRole == "2" %}
+                Instructeur
+            {% elif currentRole == "3" %}
+                Secretaire
+            {% else %}
+                Administateur
+            {% endif %}
+        </h2>
+        <a class="link-offset-2 link-underline link-underline-opacity-0 bg-danger bg-gradient px-5 py-2 text-white" href="{% url 'form_deconnexion' %}">Déconnexion</a>
+        
+        {% if currentRole == "1" %}
+            <h3>Achete ton forfait auprès de la secretaire pour faire des heurs de conduites</h3>
+
+            <form action="" method="post" autocomplete="off">
+                {% csrf_token %} 
+
+                <label for="forfait">Forfait disponible pour les leçon de conduite:</label>
+                <select name="forfait">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                </select>
+                <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Acheter le forfait d’heure de leçons</button>
+            </form>
+                {% if currentSecretaire != 'non' %}
+                    {% if forfait != '' %}
+                        Tu as acheter le forfait {{ forfait }} auprès de la secretaire {{ currentSecretaire.username }}
+                    {% else %}
+                       Il te faut un forfait pour pouvoir suivre les étapes
+                    {% endif%}
+                {% else %}
+                    {% if confirmation == True %}
+                        <label>Prendre rendez-vous</label>
+                        <input type="date" name="calendrier">
+                    {% endif %}
+                {% endif %}
+
+        {% elif currentRole == "2" %}
+            
+        {% elif currentRole == "3" %}   
+        <div class="mt-4">
+            <a class="link-offset-2 link-underline link-underline-opacity-0 bg-warning bg-gradient px-5 py-2 text-white" href="{% url 'form_student' %}">Créer un compte élève</a>
+            <a class="link-offset-2 link-underline link-underline-opacity-0 bg-primary bg-gradient px-5 py-2 text-white" href="{% url 'form_instructor' %}">Créer un compte instructeur</a>
+        </div>
+        <div class="mt-4">
+            <a class="link-offset-2 link-underline link-underline-opacity-0 bg-primary bg-gradient px-5 py-2 text-white" href="{% url 'eleves_list' %}">Liste des élèves</a>
+            <a class="link-offset-2 link-underline link-underline-opacity-0 bg-success bg-gradient px-5 py-2 text-white" href="{% url 'instructors_list' %}">Liste des instructeurs</a>
+        </div>
+        <div class="mt-4">
+            <a class="link-offset-2 link-underline link-underline-opacity-0 bg-primary bg-gradient px-5 py-2 text-white" href="{% url 'demandes_students' 73 %}">Les demandes de permis de conduire</a>
+        </div>
+        {% else %}
+            <h4>Gestion compléte de l'auto-école</h4>
+        {% endif %}
+       
+    {% else %}
+        {% comment %} <a class="link-offset-2 link-underline link-underline-opacity-0 bg-primary bg-gradient px-5 py-2 text-white" href="{% url 'form_inscription' %}">Inscription</a> {% endcomment %}
+        <a class="link-offset-2 link-underline link-underline-opacity-0 bg-danger bg-gradient px-5 py-2 text-white" href="{% url 'form_connexion' %}">Connexion</a>
+    {% endif %}
+
+{% endblock content %}

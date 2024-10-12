@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titre %}
+    <h1>Voici toute les demandes des élèves qui veulent prendre des heure de conduite avec toi
+        {{ secretaire.username }} <h1>
+{% endblock titre %}
+
+{% block content %}
+            <div class="d-flex flex-wrap gap-1 m-45">
+            {% for demande in demandes %}
+            <div class="bg-[#F5F53E]">
+                <div class="p-2" style="font-weight:500">
+                    {{ demande.nom }}
+                </div>
+                <div class="p-2">
+                    {% if demande.confirmation != True %}   
+                    <div>Forfait</div>
+                    {% else %}
+                    <div>Forfait payer</div>
+                    {% endif %}
+                    {{ demande.forfait }} H de leçon de conduite
+                </div>
+                {% if demande.confirmation != True %}
+                    <a href={% url 'demande_accept' demande.id %} style="background-color:#1f5d77; color:mintcream; text-decoration:none;" class="p-2 mb-2 px-7">Confirmer la transaction</a>
+                {% else %}
+                    <div>
+                        <span class="bg-warning p-2 mb-2 px-7">Demande confirmer</span>
+                    </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            </div>
+           
+{% endblock content %}

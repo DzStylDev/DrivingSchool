@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titre %}
+    <h1>Modifie le compte de {{ eleve.username }} <h1>
+{% endblock titre %}
+
+{% block content %}
+    <form action="" method="post" autocomplete="off">
+        {% csrf_token %}
+
+        <div>
+            <label>Username</label>
+            <input type="text" value="{{ eleve.username }}" name="username">
+        </div>
+        
+        
+        <div>
+            <label>Nom</label>
+            <input type="text" value="{{ eleve.nom }}" name="nom">
+        </div>
+       
+        <div>
+            <label>Prenom</label>
+            <input type="text" value="{{ eleve.prenom }}" name="prenom">  
+        </div>
+        
+        <div>
+            <label>Mot de passe</label>
+            <input type="password" value="{{ eleve.password }}" name="password">
+        </div>
+        
+        <div>
+            <label>Numéro de téléphone</label>
+            <input type="text" value="{{ eleve.tel }}" name="tel">
+        </div>
+        
+        <div>
+            <label>Adresse</label>
+            <input type="text" value="{{ eleve.adresse }}" name="adresse">
+        </div>
+
+        <div>
+            <label>Date de naissance</label>
+            <input type="text" value="{{ eleve.date_naissance }}" name="date_naissance">
+        </div>
+        
+        <div>
+            <label>Code postal</label>
+            <input type="text" value="{{ eleve.code_postal }}" name="code_postal">
+        </div>
+
+        <div>
+            <label>Email</label>
+            <input type="text" value="{{ eleve.email }}" name="email">
+        </div>
+        
+        <div>
+            <label>Sexe</label>
+            <select type="text" name="civility">
+                <option value="">{{ eleve.civility }}</option>
+                <option value="Homme">Homme</option>
+                <option value="Femme">Femme</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Modifer le compte</button>
+    </form>
+{% endblock content %}

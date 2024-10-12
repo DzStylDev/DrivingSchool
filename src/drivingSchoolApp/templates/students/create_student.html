@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titre %}
+    <h1>Créer un compte Student pour l'auto-ecole<h1>
+{% endblock titre %}
+
+{% block content %}
+    <form action="" method="post" autocomplete="off">
+        {% csrf_token %}
+        {{ form.username|as_crispy_field }}
+        {{ form.prenom|as_crispy_field }}
+        {{ form.nom|as_crispy_field }}
+        {{ form.password|as_crispy_field }}
+        {{ form.tel|as_crispy_field }}
+        {{ form.adresse|as_crispy_field }}
+        {{ form.date_naissance|as_crispy_field }}
+        {{ form.code_postal|as_crispy_field }}
+        {{ form.email|as_crispy_field }}
+        {{ form.civility|as_crispy_field }}
+
+        <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Créer le compte</button>
+    </form>
+{% endblock content %}

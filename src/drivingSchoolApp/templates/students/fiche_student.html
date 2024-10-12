@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titre %}
+    <h1>Fiche de {{ ficheEleve.username }} <h1>
+{% endblock titre %}
+
+{% block content %}
+        {{ ficheEleve.nom }}
+        {{ ficheEleve.prenom }}
+        {{ ficheEleve.tel }}
+        {{ ficheEleve.adresse }}
+        {{ ficheEleve.date_naissance }}
+        {{ ficheEleve.code_postal }}
+        {{ ficheEleve.email }}
+        {{ ficheEleve.civility }}
+        {% if ficheEleve.comptes == '1' %}
+            Elève
+        {% elif ficheEleve.comptes == '2' %}
+            Instructeur
+        {% elif ficheEleve.comptes == '3' %}
+            Secretaire
+        {% elif ficheEleve.comptes == '4' %}
+            Admin
+        {% endif %}
+{% endblock content %}

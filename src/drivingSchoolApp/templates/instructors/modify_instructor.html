@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titre %}
+    <h1>Modifie le compte de {{ instructeur.username }} <h1>
+{% endblock titre %}
+
+{% block content %}
+    <form action="" method="post" autocomplete="off">
+        {% csrf_token %}
+
+        <div>
+            <label>Username</label>
+            <input type="text" value="{{ instructeur.username }}" name="username">
+        </div>
+        
+        <div>
+            <label>Nom</label>
+            <input type="text" value="{{ instructeur.nom }}" name="nom">
+        </div>
+        
+        <div>
+            <label>Prenom</label>
+            <input type="text" value="{{ instructeur.prenom }}" name="prenom">  
+        </div>
+        
+        <div>
+            <label>Mot de passe</label>
+            <input type="password" value="{{ instructeur.password }}" name="password">
+        </div>
+        
+        <div>
+            <label>Numéro de téléphone</label>
+            <input type="text" value="{{ instructeur.tel }}" name="tel">
+        </div>
+        
+        <div>
+            <label>Adresse</label>
+            <input type="text" value="{{ instructeur.adresse }}" name="adresse">
+        </div>
+        <div>
+            <label>Date de naissance</label>
+            <input type="text" value="{{ instructeur.date_naissance }}" name="date_naissance">
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="text" value="{{ instructeur.email }}" name="email">
+        </div>
+        
+        <div>
+            <label>Code postal</label>
+            <input type="text" value="{{ instructeur.code_postal }}" name="code_postal">
+        </div>
+        
+        <div>
+            <label>Sexe</label>
+            <select type="text" name="civility">
+                <option value="" selected>{{ instructeur.civility }}</option>
+                <option value="Homme">Homme</option>
+                <option value="Femme">Femme</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Modifer le compte</button>
+    </form>
+{% endblock content %}
